@@ -56,7 +56,7 @@ var authors = "Snaeky (SnaekySnacks#1161) - Balancing, Structuring, Story\n" +
 var version = 2;
 
 // init variables
-var currency, currency_R, currency_I;
+var currency, currency_J, currency_L;
 var quaternaryEntries;
 
 // upgrade variables
@@ -79,8 +79,8 @@ var dimension;
 
 // graph variables
 var scale = 0.2;
-var R = BigNumber.ZERO;
-var I = BigNumber.ZERO;
+var J = BigNumber.ZERO;
+var L = BigNumber.ZERO;
 var t_speed;                  // multiplies dt by given value (1 + t_multiplier * dt)
 var t = BigNumber.ZERO;       // time elapsed ( -> cos(t), sin(t) etc.)
 var t_graph = BigNumber.ZERO; // distance from current x value to origin
@@ -94,7 +94,7 @@ var swizzle = (v) => new Vector3(v.y, v.z, v.x);
 
 var init = () => {
     currency = theory.createCurrency();
-    currency_R = theory.createCurrency("R", "R");
+    currency_R = theory.createCurrency("J", "J");
     currency_I = theory.createCurrency("I", "I");
 
     max_R = BigNumber.ZERO;
@@ -206,8 +206,8 @@ var init = () => {
     theory.setMilestoneCost(new CustomCost(total => BigNumber.from(getCustomCost(total))));
 
     {
-        dimension = theory.createMilestoneUpgrade(0, 2);
-        dimension.getDescription = () => dimension.level == 0 ? "Unlock the real component R" : "Unlock the imaginary component I";
+        dimension = theory.createMilestoneUpgrade(0, 1);
+        dimension.getDescription = () => dimension.level == 0 ? "Unlock the Life component L";
         dimension.getInfo = () => Localization.getUpgradeAddDimensionDesc();
         dimension.boughtOrRefunded = (_) => { theory.invalidatePrimaryEquation(); theory.invalidateSecondaryEquation(); theory.invalidateTertiaryEquation(); updateAvailability(); }
         dimension.canBeRefunded = (_) => a_base.level == 0 && a_exp.level == 0 && b_base.level == 0 && c_base.level == 0;
